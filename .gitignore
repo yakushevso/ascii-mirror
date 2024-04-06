@@ -1,0 +1,20 @@
+# course config files
+*.yaml
+
+# gradle
+.gradle/
+/gradle/
+/gradlew
+/gradlew.bat
+build
+out
+
+# idea config
+.idea
+
+# stages
+/ASCII Mirror/ASCII Lands welcome you, Stranger/
+/ASCII Mirror/ASCII homes/
+/ASCII Mirror/New friends/
+/ASCII Mirror/Odd mirrors/
+/ASCII Mirror/Getting it straight/
