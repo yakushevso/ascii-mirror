@@ -13,14 +13,12 @@ public class UI {
     }
 
     public void readFile(String file) {
-        System.out.println(file);
-
-        try (Scanner sc = new Scanner(new File("C:\\Users\\ASCII_Cow\\MooFolder\\MooFile.txt"))) {
+        try (Scanner sc = new Scanner(new File(file))) {
             while (sc.hasNextLine()) {
                 System.out.println(sc.nextLine());
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("File not found!");
         }
     }
 }
