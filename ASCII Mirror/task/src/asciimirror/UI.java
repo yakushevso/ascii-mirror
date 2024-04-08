@@ -2,9 +2,7 @@ package asciimirror;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class UI {
     public void start() {
@@ -42,11 +40,36 @@ public class UI {
         return longestLine;
     }
 
+    private String getModifiedLine(String line, int longestLine) {
+        return line.length() <= longestLine ? line + " ".repeat(longestLine - line.length()) : line;
+    }
+
+    private String getReversedModifiedLine(String line) {
+        StringBuilder reverseLine = new StringBuilder();
+        Map<Character, Character> charMap = new HashMap<>();
+        charMap.put('<', '>');
+        charMap.put('>', '<');
+        charMap.put('[', ']');
+        charMap.put(']', '[');
+        charMap.put('{', '}');
+        charMap.put('}', '{');
+        charMap.put('(', ')');
+        charMap.put(')', '(');
+        charMap.put('/', '\\');
+        charMap.put('\\', '/');
+
+        for (int i = line.length() - 1; i >= 0; i--) {
+            char ch = line.charAt(i);
+            reverseLine.append(charMap.getOrDefault(ch, ch));
+        }
+
+        return reverseLine.toString();
+    }
+
     private void modifiedPrint(List<String> animal, int longestLine) {
         for (String line : animal) {
-            String modifiedLine = line.length() <= longestLine
-                    ? line + " ".repeat(longestLine - line.length()) : line;
-            System.out.println(modifiedLine + " | " + modifiedLine);
+            String modifiedLine = getModifiedLine(line, longestLine);
+            System.out.println(modifiedLine + " | " + getReversedModifiedLine(modifiedLine));
         }
     }
 }
